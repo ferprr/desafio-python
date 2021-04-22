@@ -1,0 +1,6 @@
+#ignore temporary files
+**/__pycache__
+**/*.pyc
+
+# vscode stuff
+.vscode/*
