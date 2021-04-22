@@ -8,7 +8,7 @@ O desafio proposto a ser desenvolvido é um gerenciador de acervo de músicas. P
 
 ### ⌨️ Instruções para Execução 
 
-<!-- adicionar -->
+py controllers.py
 
 ### 🛠 Features
 
