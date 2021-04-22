@@ -1,32 +1,34 @@
-from django.db.models.fields import BooleanField, CharField, DurationField
+from datetime import datetime
+from django.db.models.fields import BooleanField, CharField
+from django.forms import BooleanField, DateTimeField
 
 
 class Song:
-    title = CharField(max_length=20, blank=True, null=True)
-    duration = DurationField(blank=True, null=True)
-    isFavorite = BooleanField(blank=True, null=True)
-    
-    def __init__(self, title, duration, isFavorite):
-        self.title = title
-        self.duration = duration
-        self.isFavorite = isFavorite
+
+
+    def __init__(self, title:str, duration:datetime.time, isFavorite:bool):
+        self.title:str = title
+        self.duration:datetime.time = duration
+        self.isFavorite:bool = isFavorite
 
 
 class Album:
-    title = CharField(max_length=20, blank=True, null=True)
-    release = CharField(max_length=20, blank=True, null=True)
-    band = CharField(max_length=20, blank=True, null=True)
-    songs = []
 
-    def __init__(self, title, release, band):
-        self.title = title
-        self.release = release
-        self.band = band
+
+    def __init__(self, title:str, release:str, band:str):
+        self.title:str = title
+        self.release:str = release
+        self.band:str = band
+
+    # def __init__(self, songs:list):
+    #     self.songs:list = songs
 
 
 class Playlist:
-    name = CharField(max_length=20, blank=True, null=True)
-    songs = []
 
-    def __init__(self, name):
-        self.title = name
+
+    def __init__(self, name:str):
+        self.title:str = name
+
+    def __init__(self, songs:list):
+        self.songs:list = songs
