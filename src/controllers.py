@@ -1,15 +1,11 @@
-from datetime import time
+from datetime import datetime
 import sys
-import time
-
 import views
-
 from models import Album, Song
 
 albuns = set()
 playlist = set()
 songs = set()
-
 
 def main():
     option = input(
@@ -51,7 +47,7 @@ def createAlbum():
     print("Type the songs information you want add to the album: ")
     titleSong = input("Type a title to the song: ")
     time_string = input("Type a duration to the song (specify time in MMSS format): ")
-    duration = time.strptime(time_string, "%M:%S")
+    duration = datetime.strptime(time_string, "%M:%S")
     isFavorite = input("Type if this is a favorite song: ")
     song = Song(titleSong, duration, isFavorite)
     album = Album(title, release, band, song)

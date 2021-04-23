@@ -22,6 +22,15 @@ def searchSong(albuns, songs, request):
                 if song.title == request:
                     print(f'{song.title} {song.duration} {song.isFavorite}')
 
+def get_song(songs):
+    new_song_idx = random.choice(range(len(songs)))
+    new_song = songs[new_song_idx]
+
+    # deleta a musica escolhida da lista para evitar repeticao
+    songs.pop(new_song_idx)
+    
+    return (new_song, songs)
+
 def generatePlaylist(songs, playlist):
     duration_time = 0
     limit_time = 3600

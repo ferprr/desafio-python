@@ -1,18 +1,14 @@
-from datetime import time
-
-
+from datetime import datetime
 
 class Song:
 
-
-    def __init__(self, title:str, duration:time, isFavorite:bool):
+    def __init__(self, title:str, duration:datetime, isFavorite:bool):
         self.title:str = title
-        self.duration:time = duration
+        self.duration:datetime = datetime.strptime(duration, "%M:%S")
         self.isFavorite:bool = isFavorite
 
 
 class Album:
-
 
     def __init__(self, title:str, release:int, band:str, song:Song):
         self.title:str = title
@@ -26,7 +22,6 @@ class Album:
 
 
 class Playlist:
-
 
     def __init__(self, name:str, song:Song):
         self.title:str = name
