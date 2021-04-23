@@ -13,16 +13,17 @@ def createAlbum(selfAlbum, selfSong):
 def registerSongOnAlbum(selfSong, selfAlbum):
     Album.setSong(selfAlbum, selfSong)
     songs.append(selfSong)
-    #Album.songs.append(selfSong)
 
 def searchAlbum(request):
     for i in range(len(albuns)):
-        if albuns[i] == request:
+        if hasattr(albuns[i], request):
             print(albuns[i])
 
 def searchSong(request):
     for i in range(len(songs)):
-        if songs[i] == request:
+        print(songs[i])
+    for i in range(len(songs)):
+        if hasattr(songs[i], request):
             print(songs[i])
 
 def generatePlaylist():

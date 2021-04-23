@@ -1,5 +1,4 @@
 import sys
-from turtle import title
 
 import views
 
@@ -44,6 +43,7 @@ def createAlbum():
     release = input("Type a release to the album: ")
     band = input("Type a band to the album: ")
     album = Album(title, release, band)
+    print("Type the songs information you want add to the album: ")
     titleSong = input("Type a title to the song: ")
     duration = input("Type a duration to the song: ")
     isFavorite = input("Type if this is a favorite song: ")
