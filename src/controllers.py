@@ -4,9 +4,9 @@ import views
 
 from models import Album, Song
 
-albuns = []
-playlist = []
-songs = []
+albuns = set()
+playlist = set()
+songs = set()
 
 def main():
     option = input(
