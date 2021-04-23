@@ -1,6 +1,5 @@
 from datetime import datetime
-from django.db.models.fields import BooleanField, CharField
-from django.forms import BooleanField, DateTimeField
+
 
 
 class Song:
@@ -20,8 +19,8 @@ class Album:
         self.release:str = release
         self.band:str = band
 
-    # def __init__(self, songs:list):
-    #     self.songs:list = songs
+    def setSong(self, songs:list):
+        self.songs:list.append(songs)
 
 
 class Playlist:

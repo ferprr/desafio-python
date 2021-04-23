@@ -1,24 +1,29 @@
 from models import Album
 
-#limit = 01:00:00
+#limit = 00:01:00
 
 albuns = []
 playlist = []
+songs = []
 
 def createAlbum(selfAlbum, selfSong):
     albuns.append(selfAlbum)
     registerSongOnAlbum(selfSong, selfAlbum)
 
 def registerSongOnAlbum(selfSong, selfAlbum):
-    Album.insert(selfAlbum, selfSong)
+    Album.setSong(selfAlbum, selfSong)
+    songs.append(selfSong)
     #Album.songs.append(selfSong)
 
 def searchAlbum(request):
-    filter_object = filter(lambda a: request in a, albuns)
-    print(albuns(filter_object))
+    for i in range(len(albuns)):
+        if albuns[i] == request:
+            print(albuns[i])
 
 def searchSong(request):
-    filter_object = filter(lambda a: request in a, albuns.songs)
-    print(albuns.songs(filter_object))
+    for i in range(len(songs)):
+        if songs[i] == request:
+            print(songs[i])
 
-#def generatePlaylist():
+def generatePlaylist():
+    print(songs.sort())
