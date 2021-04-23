@@ -29,7 +29,7 @@ def main():
 
     elif option == '4':
         print("Generating playlist...")
-        generatePlaylist()
+        #generatePlaylist()
         main()
 
     elif option == '5':
@@ -62,8 +62,8 @@ def searchSong():
     request = input("Type a information to find the song: ")
     views.searchSong(albuns, songs, request)
 
-def generatePlaylist():
-    views.generatePlaylist(songs)
+# def generatePlaylist():
+#     views.generatePlaylist(songs)
 
 if __name__=="__main__":
         main()

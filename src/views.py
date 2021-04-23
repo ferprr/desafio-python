@@ -12,18 +12,18 @@ def createAlbum(albuns, selfAlbum, songs, selfSong):
     songs.add(selfSong)
 
 def searchAlbum(albuns, request, songs):
-    for i in range(len(albuns)):
-        if albuns[i].title == request or albuns[i].band == request:
-            for j in range(len(albuns[i].songs)):
-                print(f'{albuns[i].title} {albuns[i].band} {albuns[i].release}')
-                print(f'{songs[j].title} {songs[j].duration} {songs[j].isFavorite}')
+    for album in albuns:
+        if album.title == request or album.band == request:
+            for song in album.songs:
+                print(f'{album.title} {album.band} {album.release}')
+                print(f'{song.title} {song.duration} {song.isFavorite}')
 
 def searchSong(albuns, songs, request):
-    for i in range(len(albuns)):
-        if albuns[i].band == request:
-            for j in range(len(songs)):
-                if songs[j].title == request:
-                    print(f'{songs[j].title} {songs[j].duration} {songs[j].isFavorite}')
+    for album in albuns:
+        if album.band == request:
+            for song in songs:
+                if song.title == request:
+                    print(f'{song.title} {song.duration} {song.isFavorite}')
 
-def generatePlaylist(songs):
-    print(songs.sort())
+# def generatePlaylist(songs):
+#     print(sorted(songs))
