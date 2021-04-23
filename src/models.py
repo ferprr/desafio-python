@@ -29,5 +29,5 @@ class Playlist:
     def __init__(self, name:str):
         self.title:str = name
 
-    def __init__(self, songs:list):
+    def setSong(self, songs:list):
         self.songs:list = songs

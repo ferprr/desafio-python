@@ -4,6 +4,9 @@ import views
 
 from models import Album, Song
 
+albuns = []
+playlist = []
+songs = []
 
 def main():
     option = input(
@@ -26,7 +29,7 @@ def main():
 
     elif option == '4':
         print("Generating playlist...")
-        #generatePlaylist()
+        generatePlaylist()
         main()
 
     elif option == '5':
@@ -48,18 +51,18 @@ def createAlbum():
     duration = input("Type a duration to the song: ")
     isFavorite = input("Type if this is a favorite song: ")
     song = Song(titleSong, duration, isFavorite)
-    views.createAlbum(album, song)
+    views.createAlbum(albuns, album, songs, song)
 
 def searchAlbum():
     request = input("Type a information to find the album: ")
-    views.searchAlbum(request)
+    views.searchAlbum(albuns, request)
 
 def searchSong():
     request = input("Type a information to find the song: ")
-    views.searchSong(request)
+    views.searchSong(songs, request)
 
 def generatePlaylist():
-    generatePlaylist()
+    views.generatePlaylist(songs)
 
 if __name__=="__main__":
         main()

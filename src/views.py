@@ -2,29 +2,23 @@ from models import Album
 
 #limit = 00:01:00
 
-albuns = []
-playlist = []
-songs = []
-
-def createAlbum(selfAlbum, selfSong):
+def createAlbum(albuns, selfAlbum, songs, selfSong):
     albuns.append(selfAlbum)
-    registerSongOnAlbum(selfSong, selfAlbum)
+    registerSongOnAlbum(songs,selfSong, selfAlbum)
 
-def registerSongOnAlbum(selfSong, selfAlbum):
+def registerSongOnAlbum(songs, selfSong, selfAlbum):
     Album.setSong(selfAlbum, selfSong)
     songs.append(selfSong)
 
-def searchAlbum(request):
+def searchAlbum(albuns, request):
     for i in range(len(albuns)):
-        if hasattr(albuns[i], request):
-            print(albuns[i])
+        if albuns[i].title == request or albuns[i].band == request:
+            print(f'{albuns[i].title} {albuns[i].band}')
 
-def searchSong(request):
+def searchSong(songs, request):
     for i in range(len(songs)):
-        print(songs[i])
-    for i in range(len(songs)):
-        if hasattr(songs[i], request):
-            print(songs[i])
+        if songs[i].title == request:
+            print(f'{songs[i].title} {songs[i].duration}')
 
-def generatePlaylist():
+def generatePlaylist(songs):
     print(songs.sort())
