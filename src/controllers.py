@@ -45,21 +45,22 @@ def createAlbum():
     title = input("Type a title to the album: ")
     release = input("Type a release to the album: ")
     band = input("Type a band to the album: ")
-    album = Album(title, release, band)
     print("Type the songs information you want add to the album: ")
     titleSong = input("Type a title to the song: ")
     duration = input("Type a duration to the song: ")
     isFavorite = input("Type if this is a favorite song: ")
     song = Song(titleSong, duration, isFavorite)
+    album = Album(title, release, band, song)
+    
     views.createAlbum(albuns, album, songs, song)
 
 def searchAlbum():
     request = input("Type a information to find the album: ")
-    views.searchAlbum(albuns, request)
+    views.searchAlbum(albuns, request, songs)
 
 def searchSong():
     request = input("Type a information to find the song: ")
-    views.searchSong(songs, request)
+    views.searchSong(albuns, songs, request)
 
 def generatePlaylist():
     views.generatePlaylist(songs)

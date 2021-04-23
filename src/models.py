@@ -14,10 +14,11 @@ class Song:
 class Album:
 
 
-    def __init__(self, title:str, release:str, band:str):
+    def __init__(self, title:str, release:str, band:str, song:list):
         self.title:str = title
         self.release:str = release
         self.band:str = band
+        self.songs:list.append(song)
 
     def setSong(self, songs:list):
         self.songs:list.append(songs)
@@ -29,5 +30,5 @@ class Playlist:
     def __init__(self, name:str):
         self.title:str = name
 
-    def setSong(self, songs:list):
-        self.songs:list = songs
+    # def setSong(self, songs:list):
+    #     self.songs:list = songs
