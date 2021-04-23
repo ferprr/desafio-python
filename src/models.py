@@ -14,9 +14,9 @@ class Song:
 class Album:
 
 
-    def __init__(self, title:str, release:str, band:str, song:Song):
+    def __init__(self, title:str, release:int, band:str, song:Song):
         self.title:str = title
-        self.release:str = release
+        self.release:int = release
         self.band:str = band
         self.songs:set = set()
         self.songs.add(song)

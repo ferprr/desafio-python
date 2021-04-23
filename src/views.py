@@ -1,15 +1,14 @@
 from datetime import time
 from random import random
 
-def createAlbum(albuns, album, songs, favorite_songs, song):
+from models import Song
+
+def createAlbum(albuns, album, songs, song):
     album.setSong(song)
     albuns.add(album)
-    if song.isFavorite:
-        favorite_songs.add(song)
-    else:
-        songs.add(song)
+    songs.add(song)
 
-def searchAlbum(albuns, request, songs):
+def searchAlbum(albuns, request):
     for album in albuns:
         if album.title == request or album.band == request:
             for song in album.songs:
@@ -23,18 +22,30 @@ def searchSong(albuns, songs, request):
                 if song.title == request:
                     print(f'{song.title} {song.duration} {song.isFavorite}')
 
-def generatePlaylist(favorite_songs, songs, playlist):
-    duration_time:time = time()
-    limit_time = time(1, 0, 0)
+def generatePlaylist(songs, playlist):
+    duration_time = 0
+    limit_time = 3600
+    new_song:Song
+    qt_fav_songs:int = 0
+    qt_usual_songs:int = 0
+    
     while duration_time < limit_time:
-        for i in range(len(songs)):
-            if i % 2 == 0:
-                new_song = random.choice(favorite_songs)
-                playlist.add(new_song)
-                duration_time= duration_time + new_song.duration
-            else:
-                new_song = random.choice(songs)
-                playlist.add(new_song)
+
+        if qt_fav_songs == qt_usual_songs:
+            new_song = random.choice(tuple(songs))
+
+        if duration_time + (new_song.duration.minute * 60 + new_song.duration.second)  > limit_time: 
+            duration_time = limit_time
+            continue # pula para a proxima iteracao do loop
+        else:
+            duration_time += (new_song.duration.minute * 60 + new_song.duration.second)
+        
+        playlist.add(new_song)
+
+        if new_song.isFavorite == 0:
+            qt_usual_songs += 1
+        else:
+            qt_fav_songs +=1 
 
     for song in playlist:
         print(song.title + " \n ")

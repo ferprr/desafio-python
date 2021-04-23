@@ -9,7 +9,7 @@ from models import Album, Song
 albuns = set()
 playlist = set()
 songs = set()
-favorite_songs = set()
+
 
 def main():
     option = input(
@@ -56,7 +56,7 @@ def createAlbum():
     song = Song(titleSong, duration, isFavorite)
     album = Album(title, release, band, song)
     
-    views.createAlbum(albuns, album, songs, favorite_songs, song)
+    views.createAlbum(albuns, album, songs, song)
 
 def searchAlbum():
     request = input("Type a information to find the album: ")
@@ -67,7 +67,7 @@ def searchSong():
     views.searchSong(albuns, songs, request)
 
 def generatePlaylist():
-    views.generatePlaylist(favorite_songs, songs, playlist)
+    views.generatePlaylist(songs, playlist)
 
 if __name__=="__main__":
         main()
