@@ -1,13 +1,13 @@
-from datetime import datetime
+from datetime import time
 
 
 
 class Song:
 
 
-    def __init__(self, title:str, duration:datetime.time, isFavorite:bool):
+    def __init__(self, title:str, duration:time, isFavorite:bool):
         self.title:str = title
-        self.duration:datetime.time = duration
+        self.duration:time = duration
         self.isFavorite:bool = isFavorite
 
 

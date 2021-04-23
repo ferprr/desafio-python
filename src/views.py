@@ -1,15 +1,13 @@
-from models import Album
+from datetime import time
+from random import random
 
-#limit = 60:00
-
-def createAlbum(albuns, selfAlbum, songs, selfSong):
-    # if selfAlbum in albuns:
-    #     selfAlbum.setSong(selfSong)
-    #     songs.append(selfSong)
-    # else:
-    selfAlbum.setSong(selfSong)
-    albuns.add(selfAlbum)
-    songs.add(selfSong)
+def createAlbum(albuns, album, songs, favorite_songs, song):
+    album.setSong(song)
+    albuns.add(album)
+    if song.isFavorite:
+        favorite_songs.add(song)
+    else:
+        songs.add(song)
 
 def searchAlbum(albuns, request, songs):
     for album in albuns:
@@ -25,5 +23,18 @@ def searchSong(albuns, songs, request):
                 if song.title == request:
                     print(f'{song.title} {song.duration} {song.isFavorite}')
 
-# def generatePlaylist(songs):
-#     print(sorted(songs))
+def generatePlaylist(favorite_songs, songs, playlist):
+    duration_time:time = time()
+    limit_time = time(1, 0, 0)
+    while duration_time < limit_time:
+        for i in range(len(songs)):
+            if i % 2 == 0:
+                new_song = random.choice(favorite_songs)
+                playlist.add(new_song)
+                duration_time= duration_time + new_song.duration
+            else:
+                new_song = random.choice(songs)
+                playlist.add(new_song)
+
+    for song in playlist:
+        print(song.title + " \n ")
