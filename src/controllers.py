@@ -3,8 +3,8 @@ import sys
 import views
 from models import Album, Song
 
-albuns = []
-songs = []
+albuns:list = []
+songs:list = []
 
 def main():
     option = input(
@@ -51,8 +51,10 @@ def createAlbum():
     album = Album(title, release, band, song)
     
     new_albuns, new_songs = views.createAlbum(albuns, album, songs, song)
-    albuns = new_albuns
-    songs = new_songs
+    for i in range(new_albuns):
+        albuns[i] = new_albuns[i]
+    for i in range(new_songs):
+        songs[i] = new_songs[i]
 
 def searchAlbum():
     request = input("Type a information to find the album: ")

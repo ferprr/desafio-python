@@ -5,7 +5,7 @@ from models import Song
 
 def createAlbum(albuns, album, songs, song):
 
-    print(albuns.index[album])
+    #print(albuns.index[album])
     for album_x in albuns:
         if album_x.title == album.title:
             album_x.setSong(song)
