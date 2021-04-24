@@ -12,16 +12,18 @@ def createAlbum(albuns, album, songs, song):
             return albuns, songs
     
     albuns.append(album)
-    album.setSong(song)
     songs.append(song)
 
     return albuns, songs
 
 def searchAlbum(albuns, request):
+    found_albums = []
 
     for album in albuns:
         if album.title == request or album.band == request or album.release == request:
-            return album
+            found_albums.append(album)
+
+    return found_albums
 
 def searchSong(albuns, songs, song_band, request):
     if song_band == '1':
@@ -56,7 +58,7 @@ def generatePlaylist(songs):
     for i in range(len(songs)):
         
         if qt_fav_songs == qt_usual_songs:
-            if favorite_songs:
+            if favorite_songs: #esclarecer
                 new_song, favorite_songs = get_song(favorite_songs)
             else:
                 new_song, usual_songs = get_song(usual_songs)
