@@ -10,7 +10,7 @@ def createAlbum(albuns, album, songs, song):
 
 def searchAlbum(albuns, request):
     for album in albuns:
-        if album.title == request or album.band == request:
+        if album.title == request or album.band == request or album.release == request:
             for song in album.songs:
                 print(f'{album.title} {album.band} {album.release}')
                 print(f'{song.title} {song.duration} {song.isFavorite}')
