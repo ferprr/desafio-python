@@ -50,23 +50,35 @@ def createAlbum():
     song = Song(titleSong, duration, isFavorite)
     album = Album(title, release, band, song)
     
-    views.createAlbum(albuns, album, songs, song)
+    new_albuns, new_songs = views.createAlbum(albuns, album, songs, song)
+    albuns.update(new_albuns)
+    songs.update(new_songs)
 
 def searchAlbum():
     request = input("Type a information to find the album: ")
     album_returned = views.searchAlbum(albuns, request)
-    album_songs = album_returned.getSongs()
-    if type(album_songs) is set:
-        for song in album_songs:
+    if album_returned == None:
+        print("Album not found. Make sure it already exists.")
+    elif len(album_returned.songs) > 1:
+        print(f'{album_returned.title} {album_returned.release} {album_returned.band}')
+        for song in album_returned.songs:
             print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
     else: 
         print(f'{album_returned.title} {album_returned.release} {album_returned.band}')
-        print(f'{album_songs.title} {album_songs.duration.minute}:{album_songs.duration.second} {album_songs.isFavorite}')
+        for song in album_returned.songs:
+            print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
 
 def searchSong():
+    song_band = input('''
+        Do you want to search by band name or song name?
+        1 - Band
+        2 - Song
+        ''')
     request = input("Type a information to find the song: ")
-    song_returned = views.searchSong(albuns, songs, request)
-    if type(song_returned) is set:
+    song_returned = views.searchSong(albuns, songs, song_band, request)
+    if song_returned == None:
+        print("Song not found. Make sure it already exists. ")
+    elif type(song_returned) is set:
         for song in songs:
             print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
     else:

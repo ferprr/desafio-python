@@ -9,13 +9,13 @@ albuns = {Album(title="album1", release=2000, band="band1", song=Song(title="son
     Album(title="album2", release=2010, band="band2", song=Song(title="song2", duration="3:10", isFavorite=False)),
     Album(title="album2", release=2012, band="band1", song=Song(title="song3", duration="4:24", isFavorite=False)),
     Album(title="album3", release=2017, band="band2", song=Song(title="song4", duration="2:47", isFavorite=True)),
-    Album(title="album4", release=2020, band="band2", song=Song(title="song4", duration="4:03", isFavorite=True))}
+    Album(title="album4", release=2020, band="band2", song=Song(title="song5", duration="4:03", isFavorite=True))}
 
 songs = {Song(title="song1", duration="2:55", isFavorite=True), 
     Song(title="song2", duration="3:10", isFavorite=False), 
     Song(title="song3", duration="4:24", isFavorite=False),
     Song(title="song4", duration="2:47", isFavorite=True),
-    Song(title="song4", duration="4:03", isFavorite=True)}
+    Song(title="song5", duration="4:03", isFavorite=True)}
 
 class Tests(unittest.TestCase):
 
@@ -48,12 +48,11 @@ class Tests(unittest.TestCase):
 
         album = views.searchAlbum(albuns, "album4")
 
-        #print(album)
         self.assertEqual(album, album4)
 
     def test_search_album_by_band_found(self):
 
-        albuns_test = {Album(title="album2", release=2010, band="band2", song=Song(title="song2", duration="3:10", isFavorite=False)), Album(title="album3", release=2017, band="band2", song=Song(title="song4", duration="2:47", isFavorite=True)), Album(title="album4", release=2020, band="band2", song=Song(title="song4", duration="4:03", isFavorite=True))}
+        albuns_test = {Album(title="album2", release=2010, band="band2", song=Song(title="song2", duration="3:10", isFavorite=False)), Album(title="album3", release=2017, band="band2", song=Song(title="song4", duration="2:47", isFavorite=True)), Album(title="album4", release=2020, band="band2", song=Song(title="song5", duration="4:03", isFavorite=True))}
 
         album = views.searchAlbum(albuns, "band2")
 
@@ -81,23 +80,28 @@ class Tests(unittest.TestCase):
 
     def test_search_song_by_title_found(self):
 
-        song4 = Song(title="song4", duration="4:03", isFavorite=True)
+        song4 = Song(title="song4", duration="2:47", isFavorite=True)
 
         song = views.searchSong(albuns, songs, "song4")
+        print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
 
         self.assertEqual(song, song4)
 
     def test_search_song_by_title_not_found(self):
 
-        song = views.searchSong(albuns, songs, "song4")
+        song = views.searchSong(albuns, songs, "song6")
 
         self.assertEqual(song, None)
 
     def test_search_song_by_band_found(self):
 
-        song4 = Song(title="song4", duration="4:03", isFavorite=True)
+        song4 = {Song(title="song2", duration="3:10", isFavorite=False),
+        Song(title="song4", duration="2:47", isFavorite=True),
+        Song(title="song5", duration="4:03", isFavorite=True)}
 
         song = views.searchSong(albuns, songs, "band2")
+        for sing in song:
+            print(f'{sing.title} {sing.duration.minute}:{sing.duration.second} {sing.isFavorite}')
 
         self.assertEqual(song, song4)
 

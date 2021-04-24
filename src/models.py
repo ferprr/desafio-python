@@ -12,6 +12,8 @@ class Song:
     #            self.duration == other.duration and \
     #            self.isFavorite == other.isFavorite
 
+    def getSong(self):
+        return self.song
 
 class Album:
 
@@ -25,8 +27,9 @@ class Album:
     def setSong(self, song:Song):
         self.songs.add(song)
 
-    def getSongs(self):
+    def getSong(self):
         return self.songs
+
 
     # def __eq__(self, other):
     #     return self.title == other.title and \

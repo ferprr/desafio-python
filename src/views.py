@@ -3,41 +3,35 @@ import random
 
 from models import Song
 
-album_songs = set()
-
 def createAlbum(albuns, album, songs, song):
-    album.setSong(song)
+
+    for album_x in albuns:
+        if album_x.title == album.title:
+            album_x.setSong(song)
+            songs.add(song)
+            return albuns, songs
+    
     albuns.add(album)
+    album.setSong(song)
     songs.add(song)
 
+    return albuns, songs
+
 def searchAlbum(albuns, request):
+
     for album in albuns:
         if album.title == request or album.band == request or album.release == request:
             return album
-    #         for song in album.songs:
-    #             album_songs.add(song)
-    #             print(f'{album.title} {album.band} {album.release}')
-    #             print(f'{song.title} {song.duration} {song.isFavorite}')
-    # return album_songs
 
-def searchSong(albuns, songs, request):
-    # isBand, isSong = False
-
-    # for album in albuns:
-    #     if album.band == request:
-    #         isBand = True
-    
-    # for song in songs:
-    #     if song.title == request:
-    #         isSong = True
-
-    for album in albuns:
-        if album.band == request:
-            return album.songs
-
-    for song in songs:
-        if song.title == request:
-            return song
+def searchSong(albuns, songs, song_band, request):
+    if song_band == '1':
+        for album in albuns:
+            if album.band == request:
+                return album.songs
+    else:
+        for song in songs:
+            if song.title == request:
+                return song
 
 def get_song(songs):
     new_song_idx = random.choice(range(len(songs)))
