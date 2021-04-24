@@ -64,7 +64,6 @@ def generatePlaylist(songs):
             continue # pula para a proxima iteracao do loop
         else:
             duration_time += (new_song.duration.minute * 60 + new_song.duration.second)
-            #print(f"Iteration {i} duration {duration_time} and song {new_song.title}")
         
         playlist.add(new_song)
 
@@ -77,8 +76,6 @@ def generatePlaylist(songs):
         if duration_time <= limit_time and duration_time > (limit_time - 120):
             break
     
-    
-    print(f"favorites {qt_fav_songs} and usuals {qt_usual_songs} and length favorites {len(favorite_songs)} and usuals {len(usual_songs)}")
     print(f"Playlist total length {duration_time} seconds ~ {duration_time / 60} minutes")
     for song in playlist:
         print(song.title)

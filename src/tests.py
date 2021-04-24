@@ -11,12 +11,11 @@ albuns = {Album(title="album1", release=2000, band="band1", song=Song(title="son
     Album(title="album3", release=2017, band="band2", song=Song(title="song4", duration="2:47", isFavorite=True)),
     Album(title="album4", release=2020, band="band2", song=Song(title="song4", duration="4:03", isFavorite=True))}
 
-songs = {Song(title="mySong1", duration="5:00", isFavorite=True), 
-    Song(title="mySong2", duration="5:30", isFavorite=False), 
-    Song(title="mySong3", duration="4:30", isFavorite=True),
-    Song(title="mySong4", duration="3:30", isFavorite=False),
-    Song(title="mySong5", duration="3:20", isFavorite=False), 
-    Song(title="mySong6", duration="4:20", isFavorite=True)}
+songs = {Song(title="song1", duration="2:55", isFavorite=True), 
+    Song(title="song2", duration="3:10", isFavorite=False), 
+    Song(title="song3", duration="4:24", isFavorite=False),
+    Song(title="song4", duration="2:47", isFavorite=True),
+    Song(title="song4", duration="4:03", isFavorite=True)}
 
 class Tests(unittest.TestCase):
 
@@ -92,9 +91,9 @@ class Tests(unittest.TestCase):
 
     def test_search_song_by_band_found(self):
 
-        song4 = song=Song(title="song4", duration="4:03", isFavorite=True)
+        song4 = Song(title="song4", duration="4:03", isFavorite=True)
 
-        song = views.searchSong(albuns, songs, "album4")
+        song = views.searchSong(albuns, songs, "band2")
 
         self.assertEqual(song, song4)
 
