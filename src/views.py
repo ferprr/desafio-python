@@ -5,7 +5,6 @@ from models import Song
 
 def createAlbum(albuns, album, songs, song):
 
-    #print(albuns.index[album])
     for album_x in albuns:
         if album_x.title == album.title:
             album_x.setSong(song)
@@ -39,8 +38,7 @@ def get_song(songs):
     new_song = songs[new_song_idx]
 
     # deleta a musica escolhida da lista para evitar repeticao
-    index = songs.index[new_song_idx]
-    songs.pop([index])
+    songs.pop(new_song_idx)
     
     return (new_song, songs)
 
