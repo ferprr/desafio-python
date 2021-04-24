@@ -19,6 +19,9 @@ songs = {Song(title="song1", duration="2:55", isFavorite=True),
 
 class Tests(unittest.TestCase):
 
+    def setUp(self):
+        self = unittest.TestCase()
+
     def test_create_album(self):
 
         self.assertEqual(5, len(albuns))
@@ -29,9 +32,9 @@ class Tests(unittest.TestCase):
         views.createAlbum(albuns, album, songs, song)
 
         self.assertNotEqual(5, len(albuns))
-        self.assertNotEqual(6, len(songs))
+        self.assertNotEqual(5, len(songs))
         self.assertEqual(6, len(albuns))
-        self.assertEqual(7, len(songs))
+        self.assertEqual(6, len(songs))
 
     def test_search_album_by_title_not_found(self):
 
@@ -45,7 +48,8 @@ class Tests(unittest.TestCase):
 
         album = views.searchAlbum(albuns, "album4")
 
-        self.assertNotEqual(album, album4)
+        #print(album)
+        self.assertEqual(album, album4)
 
     def test_search_album_by_band_found(self):
 

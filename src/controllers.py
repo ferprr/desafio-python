@@ -21,7 +21,7 @@ def main():
         main()
 
     elif option == '3':
-        print("Type title, release or band to find a song: ")
+        print("Type title or band to find a song: ")
         searchSong()
         main()
 
@@ -46,7 +46,6 @@ def createAlbum():
     print("Type the songs information you want add to the album: ")
     titleSong = input("Type a title to the song: ")
     duration = input("Type a duration to the song (specify time in MM:SS format): ")
-    #duration = datetime.strptime(time_string, "%M:%S")
     isFavorite = input("Type if this is a favorite song: ")
     song = Song(titleSong, duration, isFavorite)
     album = Album(title, release, band, song)
@@ -55,11 +54,23 @@ def createAlbum():
 
 def searchAlbum():
     request = input("Type a information to find the album: ")
-    views.searchAlbum(albuns, request)
+    album_returned = views.searchAlbum(albuns, request)
+    album_songs = album_returned.getSongs()
+    if type(album_songs) is set:
+        for song in album_songs:
+            print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
+    else: 
+        print(f'{album_returned.title} {album_returned.release} {album_returned.band}')
+        print(f'{album_songs.title} {album_songs.duration.minute}:{album_songs.duration.second} {album_songs.isFavorite}')
 
 def searchSong():
     request = input("Type a information to find the song: ")
-    views.searchSong(albuns, songs, request)
+    song_returned = views.searchSong(albuns, songs, request)
+    if type(song_returned) is set:
+        for song in songs:
+            print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
+    else:
+        print(f'{song_returned.title} {song_returned.duration.minute}:{song_returned.duration.second} {song_returned.isFavorite}')
 
 def generatePlaylist():
     views.generatePlaylist(songs)
