@@ -1,4 +1,3 @@
-from turtle import title
 import unittest
 
 import views
@@ -8,7 +7,6 @@ from models import Album, Song
 class Tests(unittest.TestCase):
 
     def setUp(self):
-        #self = unittest.TestCase()
 
         self.albuns = [Album(title="album1", release=2000, band="band1", song=Song(title="song1", duration="2:55", isFavorite=True)),
         Album(title="album2", release=2010, band="band2", song=Song(title="song2", duration="3:10", isFavorite=False)),
@@ -24,7 +22,6 @@ class Tests(unittest.TestCase):
 
     def test_create_new_album(self):
 
-        #print(len(self.songs))
         self.assertEqual(5, len(self.albuns))
         self.assertEqual(5, len(self.songs))
 
@@ -38,7 +35,6 @@ class Tests(unittest.TestCase):
 
     def test_create_album_when_already_exists(self):
 
-        #print(len(songs))
         self.assertEqual(5, len(self.albuns))
         self.assertEqual(5, len(self.songs))
 
@@ -80,50 +76,47 @@ class Tests(unittest.TestCase):
 
         self.assertEqual(song, None)
 
-    # def test_search_album_by_title_found(self):
+    def test_search_album_by_title_found(self):
 
-    #     song=Song(title="song5", duration="4:03", isFavorite=True)
-    #     album4 = Album(title="album4", release=2020, band="band2", song=song)
+        found_album = [Album(title="album4", release=2020, band="band2", song=Song(title="song5", duration="4:03", isFavorite=True))]
 
-    #     album = views.searchAlbum(self.albuns, "album4")
+        album = views.searchAlbum(self.albuns, "album4")
 
-    #     self.assertEqual(album, album4)
+        self.assertEqual(album, found_album)
 
-    # def test_search_album_by_band_found(self):
+    def test_search_album_by_band_found(self):
 
-    #     albuns_test = {Album(title="album2", release=2010, band="band2", song=Song(title="song2", duration="3:10", isFavorite=False)), Album(title="album3", release=2017, band="band2", song=Song(title="song4", duration="2:47", isFavorite=True)), Album(title="album4", release=2020, band="band2", song=Song(title="song5", duration="4:03", isFavorite=True))}
+        albuns_test = [Album(title="album2", release=2010, band="band2", song=Song(title="song2", duration="3:10", isFavorite=False)), Album(title="album3", release=2017, band="band2", song=Song(title="song4", duration="2:47", isFavorite=True)), Album(title="album4", release=2020, band="band2", song=Song(title="song5", duration="4:03", isFavorite=True))]
 
-    #     album = views.searchAlbum(self.albuns, "band2")
+        album = views.searchAlbum(self.albuns, "band2")
 
-    #     self.assertEqual(album, albuns_test)
+        self.assertEqual(album, albuns_test)
 
-    # def test_search_album_by_release_found(self):
+    def test_search_album_by_release_found(self):
 
-    #     album4 = Album(title="album4", release=2020, band="band2", song=Song(title="song5", duration="4:03", isFavorite=True))
+        album4 = [Album(title="album4", release=2020, band="band2", song=Song(title="song5", duration="4:03", isFavorite=True))]
 
-    #     album = views.searchAlbum(self.albuns, 2020)
+        album = views.searchAlbum(self.albuns, 2020)
 
-    #     self.assertEqual(album, album4)
+        self.assertEqual(album, album4)
 
-    # def test_search_song_by_band_title_found(self):
+    def test_search_song_by_band_title_found(self):
 
-    #     song4 = {Song(title="song2", duration="3:10", isFavorite=False),
-    #     Song(title="song4", duration="2:47", isFavorite=True),
-    #     Song(title="song5", duration="4:03", isFavorite=True)}
+        song4 = [Song(title="song2", duration="3:10", isFavorite=False),
+        Song(title="song4", duration="2:47", isFavorite=True),
+        Song(title="song5", duration="4:03", isFavorite=True)]
 
-    #     song = views.searchSong(self.albuns, self.songs, '1', "band2")
-    #     # for sing in song:
-    #     #     print(f'{sing.title} {sing.duration.minute}:{sing.duration.second} {sing.isFavorite}')
+        song = views.searchSong(self.albuns, self.songs, '1', "band2")
 
-    #     self.assertEqual(song, song4)
+        self.assertEqual(song, song4)
 
-    # def test_search_song_by_song_title_found(self):
+    def test_search_song_by_song_title_found(self):
 
-    #     song5 = Song(title="song5", duration="4:03", isFavorite=True)
+        song5 = Song(title="song5", duration="4:03", isFavorite=True)
 
-    #     song = views.searchSong(self.albuns, self.songs, '2', "song5")
+        song = views.searchSong(self.albuns, self.songs, '2', "song5")
 
-    #     self.assertEqual(song, song5)
+        self.assertEqual(song, song5)
 
 if __name__ == '__main__':
     unittest.main()

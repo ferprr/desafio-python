@@ -7,11 +7,6 @@ class Song:
         self.duration:datetime = datetime.strptime(duration, "%M:%S")
         self.isFavorite:bool = isFavorite
 
-    # def __eq__(self, other):
-    #     return self.title == other.title and \
-    #            self.duration == other.duration and \
-    #            self.isFavorite == other.isFavorite
-
     def getSong(self):
         return self.song
 
@@ -29,13 +24,6 @@ class Album:
 
     def getSong(self):
         return self.songs
-
-
-    # def __eq__(self, other):
-    #     return self.title == other.title and \
-    #            self.release == other.release and \
-    #            self.band == other.band
-
 
 class Playlist:
 

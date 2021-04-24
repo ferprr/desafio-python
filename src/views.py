@@ -58,7 +58,7 @@ def generatePlaylist(songs):
     for i in range(len(songs)):
         
         if qt_fav_songs == qt_usual_songs:
-            if favorite_songs: #esclarecer
+            if favorite_songs:
                 new_song, favorite_songs = get_song(favorite_songs)
             else:
                 new_song, usual_songs = get_song(usual_songs)
