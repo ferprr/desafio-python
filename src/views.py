@@ -5,15 +5,16 @@ from models import Song
 
 def createAlbum(albuns, album, songs, song):
 
+    print(albuns.index[album])
     for album_x in albuns:
         if album_x.title == album.title:
             album_x.setSong(song)
-            songs.add(song)
+            songs.append(song)
             return albuns, songs
     
-    albuns.add(album)
+    albuns.append(album)
     album.setSong(song)
-    songs.add(song)
+    songs.append(song)
 
     return albuns, songs
 
@@ -38,7 +39,8 @@ def get_song(songs):
     new_song = songs[new_song_idx]
 
     # deleta a musica escolhida da lista para evitar repeticao
-    songs.pop(new_song_idx)
+    index = songs.index[new_song_idx]
+    songs.pop([index])
     
     return (new_song, songs)
 
@@ -48,7 +50,7 @@ def generatePlaylist(songs):
     new_song:Song
     qt_fav_songs:int = 0
     qt_usual_songs:int = 0
-    playlist = set()
+    playlist = []
 
     favorite_songs = [song for song in songs if song.isFavorite]
     usual_songs = [song for song in songs if not song.isFavorite]
@@ -76,7 +78,7 @@ def generatePlaylist(songs):
         else:
             duration_time += (new_song.duration.minute * 60 + new_song.duration.second)
         
-        playlist.add(new_song)
+        playlist.append(new_song)
 
         if new_song.isFavorite:
             qt_fav_songs += 1 

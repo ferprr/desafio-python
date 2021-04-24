@@ -21,11 +21,11 @@ class Album:
         self.title:str = title
         self.release:int = release
         self.band:str = band
-        self.songs:set = set()
-        self.songs.add(song)
+        self.songs:list = []
+        self.songs.append(song)
 
     def setSong(self, song:Song):
-        self.songs.add(song)
+        self.songs.append(song)
 
     def getSong(self):
         return self.songs
@@ -41,8 +41,8 @@ class Playlist:
 
     def __init__(self, name:str, song:Song):
         self.title:str = name
-        self.songs:set = set()
-        self.songs.add(song)
+        self.songs:list = []
+        self.songs.append(song)
 
     def setSong(self, song:Song):
-        self.songs.add(song)
+        self.songs.append(song)

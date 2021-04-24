@@ -3,8 +3,8 @@ import sys
 import views
 from models import Album, Song
 
-albuns = set()
-songs = set()
+albuns = []
+songs = []
 
 def main():
     option = input(
@@ -51,8 +51,8 @@ def createAlbum():
     album = Album(title, release, band, song)
     
     new_albuns, new_songs = views.createAlbum(albuns, album, songs, song)
-    albuns.update(new_albuns)
-    songs.update(new_songs)
+    albuns = new_albuns
+    songs = new_songs
 
 def searchAlbum():
     request = input("Type a information to find the album: ")
@@ -65,8 +65,8 @@ def searchAlbum():
             print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
     else: 
         print(f'{album_returned.title} {album_returned.release} {album_returned.band}')
-        for song in album_returned.songs:
-            print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
+        song = album_returned.songs[0]
+        print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
 
 def searchSong():
     song_band = input('''
@@ -78,7 +78,7 @@ def searchSong():
     song_returned = views.searchSong(albuns, songs, song_band, request)
     if song_returned == None:
         print("Song not found. Make sure it already exists. ")
-    elif type(song_returned) is set:
+    elif type(song_returned) is list:
         for song in songs:
             print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
     else:
