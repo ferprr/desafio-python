@@ -51,9 +51,9 @@ def createAlbum():
     album = Album(title, release, band, song)
     
     new_albuns, new_songs = views.createAlbum(albuns, album, songs, song)
-    for i in range(new_albuns):
+    for i in range(len(new_albuns)):
         albuns[i] = new_albuns[i]
-    for i in range(new_songs):
+    for i in range(len(new_songs)):
         songs[i] = new_songs[i]
 
 def searchAlbum():
