@@ -1,4 +1,4 @@
 from ast import Assert
 
-
-#def test_create_album():
+def test_create_album():
+    albuns = {}

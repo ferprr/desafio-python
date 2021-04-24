@@ -1,5 +1,5 @@
 from datetime import time
-from random import random
+import random
 
 from models import Song
 
@@ -31,30 +31,54 @@ def get_song(songs):
     
     return (new_song, songs)
 
-def generatePlaylist(songs, playlist):
+def generatePlaylist(songs):
     duration_time = 0
     limit_time = 3600
     new_song:Song
     qt_fav_songs:int = 0
     qt_usual_songs:int = 0
-    
-    while duration_time < limit_time:
+    playlist = set()
 
+    favorite_songs = [song for song in songs if song.isFavorite]
+    usual_songs = [song for song in songs if not song.isFavorite]
+    
+    for i in range(len(songs)):
+        
         if qt_fav_songs == qt_usual_songs:
-            new_song = random.choice(tuple(songs))
+            if favorite_songs:
+                new_song, favorite_songs = get_song(favorite_songs)
+            else:
+                new_song, usual_songs = get_song(usual_songs)
+        elif qt_fav_songs < qt_usual_songs:
+            if usual_songs:
+                new_song, usual_songs = get_song(usual_songs)
+            else:
+                new_song, favorite_songs = get_song(favorite_songs)
+        else:
+            if favorite_songs:
+                new_song, favorite_songs = get_song(favorite_songs)
+            else:
+                new_song, usual_songs = get_song(usual_songs)
 
         if duration_time + (new_song.duration.minute * 60 + new_song.duration.second)  > limit_time: 
-            duration_time = limit_time
             continue # pula para a proxima iteracao do loop
         else:
             duration_time += (new_song.duration.minute * 60 + new_song.duration.second)
+            #print(f"Iteration {i} duration {duration_time} and song {new_song.title}")
         
         playlist.add(new_song)
 
-        if new_song.isFavorite == 0:
-            qt_usual_songs += 1
+        if new_song.isFavorite:
+            qt_fav_songs += 1 
         else:
-            qt_fav_songs +=1 
-
+            qt_usual_songs += 1
+        
+        # Playlist entre tempo limite - 2 minutos até tempo limite
+        if duration_time <= limit_time and duration_time > (limit_time - 120):
+            break
+    
+    
+    print(f"favorites {qt_fav_songs} and usuals {qt_usual_songs} and length favorites {len(favorite_songs)} and usuals {len(usual_songs)}")
+    print(f"Playlist total length {duration_time} seconds ~ {duration_time / 60} minutes")
     for song in playlist:
-        print(song.title + " \n ")
+        print(song.title)

@@ -4,7 +4,6 @@ import views
 from models import Album, Song
 
 albuns = set()
-playlist = set()
 songs = set()
 
 def main():
@@ -46,8 +45,8 @@ def createAlbum():
     band = input("Type a band to the album: ")
     print("Type the songs information you want add to the album: ")
     titleSong = input("Type a title to the song: ")
-    time_string = input("Type a duration to the song (specify time in MMSS format): ")
-    duration = datetime.strptime(time_string, "%M:%S")
+    duration = input("Type a duration to the song (specify time in MM:SS format): ")
+    #duration = datetime.strptime(time_string, "%M:%S")
     isFavorite = input("Type if this is a favorite song: ")
     song = Song(titleSong, duration, isFavorite)
     album = Album(title, release, band, song)
@@ -56,14 +55,14 @@ def createAlbum():
 
 def searchAlbum():
     request = input("Type a information to find the album: ")
-    views.searchAlbum(albuns, request, songs)
+    views.searchAlbum(albuns, request)
 
 def searchSong():
     request = input("Type a information to find the song: ")
     views.searchSong(albuns, songs, request)
 
 def generatePlaylist():
-    views.generatePlaylist(songs, playlist)
+    views.generatePlaylist(songs)
 
 if __name__=="__main__":
         main()
