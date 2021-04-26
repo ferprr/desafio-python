@@ -100,7 +100,7 @@ def searchSong():
     if song_returned == None:
         print("Song not found. Make sure it already exists. ")
     elif type(song_returned) is list:
-        for song in songs:
+        for song in song_returned:
             print(f'{song.title} {song.duration.minute}:{song.duration.second} {song.isFavorite}')
     else:
         print(f'{song_returned.title} {song_returned.duration.minute}:{song_returned.duration.second} {song_returned.isFavorite}')
